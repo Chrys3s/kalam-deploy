@@ -13,7 +13,7 @@
 * Go to VSCode settings
 * Click on Extensions from side nav and then select prettier
 * Change the following settings
-	- Arrow Params: `avoid`
+	- Arrow Parens: `avoid`
 	- Single Quote:  `Checkmark to be selected`
 	- Tab Width:  `4`
 	- Use Tabs:  `checkmark to be selected`
