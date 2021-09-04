@@ -1,8 +1,16 @@
-import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import loginSlice from '../../slices/loginScreenSlice';
 
 const Navbar = () => {
+	const dispatch = useDispatch();
+	const { userInfo } = useSelector(state => state.userInfo);
+
+	const showPopup = () => {
+		dispatch(loginSlice.actions.displayTrue(true));
+	};
+
 	return (
 		<section className="flex justify-between bg-red-200 h-14 shadow-xl">
 			<section className="flex justify-center align-center">
@@ -23,7 +31,13 @@ const Navbar = () => {
 			</section>
 			<section className="flex justify-around h-14 w-60">
 				<span className="pt-3.5">LAMP</span>
-				<button>SignIn</button>
+				{!userInfo.isLoggedIn ? (
+					<button onClick={showPopup}>SignIn</button>
+				) : (
+					<button className="rounded-2xl bg-red-500 h-8 w-8 items-center mt-3 text-center border-none">
+						{userInfo.userName[0].toUpperCase()}
+					</button>
+				)}
 			</section>
 		</section>
 	);
