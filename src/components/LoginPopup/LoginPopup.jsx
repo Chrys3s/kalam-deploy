@@ -9,7 +9,7 @@ const LoginPopup = () => {
 	const dispatch = useDispatch();
 
 	const closePopup = () => {
-		dispatch(utilitySlice.actions.displayFalse(false));
+		dispatch(utilitySlice.actions.displayPopup(false));
 	};
 
 	const signInAction = () => {
