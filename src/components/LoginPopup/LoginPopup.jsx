@@ -2,11 +2,25 @@ import React from 'react';
 import './LoginPopup.css';
 import { useDispatch } from 'react-redux';
 import loginSlice from '../../slices/loginScreenSlice';
+import userSlice from '../../slices/userSlice';
 import { FaTimes } from 'react-icons/fa';
 
 const LoginPopup = () => {
 	const dispatch = useDispatch();
+
 	const closePopup = () => {
+		dispatch(loginSlice.actions.displayFalse(false));
+	};
+
+	const signInAction = () => {
+		dispatch(
+			userSlice.actions.login({
+				isLoggedIn: true,
+				userEmail: 'cptn3m0grv@gmail.com',
+				uuid: 'thisisauniqueuserID',
+				userName: 'gaurav Goyal',
+			})
+		);
 		dispatch(loginSlice.actions.displayFalse(false));
 	};
 
@@ -31,7 +45,9 @@ const LoginPopup = () => {
 					<input type="password" />
 				</main>
 				<main className="m-2 bg-yellow-700 p-2">
-					<button className="bg-white m-2">Sign In</button>
+					<button className="bg-white m-2" onClick={signInAction}>
+						Sign In
+					</button>
 				</main>
 			</main>
 		</main>

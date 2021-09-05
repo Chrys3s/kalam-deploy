@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import loginSlice from '../../slices/loginScreenSlice';
+import userSlice from '../../slices/userSlice';
 
 const Navbar = () => {
 	const dispatch = useDispatch();
@@ -9,6 +10,10 @@ const Navbar = () => {
 
 	const showPopup = () => {
 		dispatch(loginSlice.actions.displayTrue(true));
+	};
+
+	const logOutAction = () => {
+		dispatch(userSlice.actions.logout());
 	};
 
 	return (
@@ -34,7 +39,10 @@ const Navbar = () => {
 				{!userInfo.isLoggedIn ? (
 					<button onClick={showPopup}>SignIn</button>
 				) : (
-					<button className="rounded-2xl bg-red-500 h-8 w-8 items-center mt-3 text-center border-none">
+					<button
+						className="rounded-2xl bg-red-500 h-8 w-8 items-center mt-3 text-center border-none"
+						onClick={logOutAction}
+					>
 						{userInfo.userName[0].toUpperCase()}
 					</button>
 				)}
