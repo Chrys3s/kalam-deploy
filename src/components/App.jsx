@@ -10,17 +10,17 @@ import AboutPage from './About/AboutPage';
 import LoginPopup from './LoginPopup/LoginPopup';
 
 const App = () => {
-	const showLogin = useSelector(state => state.loginScreen);
+	const utility = useSelector(state => state.utilitySlice);
 
 	useEffect(() => {
 		document.title = 'कलम 🖋';
-	});
+	}, []);
 
 	return (
 		<Router>
-			<main>
+			<main className={utility.darkMode ? 'dark' : ''}>
 				<Navbar />
-				{showLogin.loginScreen && <LoginPopup />}
+				{utility.loginScreen && <LoginPopup />}
 				<Switch>
 					<Route path="/" exact component={LandingPage} />
 					<Route path="/blogs" exact component={BlogPage} />
