@@ -1,46 +1,56 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import loginSlice from '../../slices/loginScreenSlice';
+import utilitySlice from '../../slices/utilitySlice';
 import userSlice from '../../slices/userSlice';
 
 const Navbar = () => {
 	const dispatch = useDispatch();
 	const { userInfo } = useSelector(state => state.userInfo);
+	const utility = useSelector(state => state.utilitySlice);
 
 	const showPopup = () => {
-		dispatch(loginSlice.actions.displayTrue(true));
+		dispatch(utilitySlice.actions.displayPopup(true));
 	};
 
 	const logOutAction = () => {
 		dispatch(userSlice.actions.logout());
 	};
 
+	const switchMode = () => {
+		dispatch(utilitySlice.actions.setDarkMode(!utility.darkMode));
+		localStorage.setItem('darkMode', !utility.darkMode);
+	};
+
 	return (
-		<section className="flex justify-between bg-red-200 h-14 shadow-xl">
-			<section className="flex justify-center align-center">
-				<span className="w-20 pt-3 pl-10">
-					<Link to="/">&nbsp;&nbsp;क&nbsp;&nbsp;</Link>
+		<section className="flex justify-between bg-customN-light dark:bg-customN-dark dark:text-white h-14 shadow-xl dark:shadow-2xl">
+			<section className="flex justify-center items-center">
+				<span className="p-2 m-1 text-3xl font-semibold">
+					<Link to="/">क</Link>
 				</span>
 			</section>
-			<section className="flex justify-around h-14 w-60">
-				<button>
+			<section className="flex justify-around items-center">
+				<button className="p-2 m-1">
 					<Link to="/blogs">Blogs</Link>
 				</button>
-				<button>
+				<button className="p-2 m-1">
 					<Link to="/practice">Practice</Link>
 				</button>
-				<button>
+				<button className="p-2 m-1">
 					<Link to="/about">About</Link>
 				</button>
 			</section>
-			<section className="flex justify-around h-14 w-60">
-				<span className="pt-3.5">LAMP</span>
+			<section className="flex justify-around h-14 w-60 items-center">
+				<span className="cursor-pointer p-2 m-1" onClick={switchMode}>
+					LAMP
+				</span>
 				{!userInfo.isLoggedIn ? (
-					<button onClick={showPopup}>SignIn</button>
+					<button onClick={showPopup} className="p-2 m-1">
+						SignIn
+					</button>
 				) : (
 					<button
-						className="rounded-2xl bg-red-500 h-8 w-8 items-center mt-3 text-center border-none"
+						className="rounded-2xl bg-red-500 h-8 w-8 items-center text-center border-none"
 						onClick={logOutAction}
 					>
 						{userInfo.userName[0].toUpperCase()}

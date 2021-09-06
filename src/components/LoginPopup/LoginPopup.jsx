@@ -1,7 +1,7 @@
 import React from 'react';
 import './LoginPopup.css';
 import { useDispatch } from 'react-redux';
-import loginSlice from '../../slices/loginScreenSlice';
+import utilitySlice from '../../slices/utilitySlice';
 import userSlice from '../../slices/userSlice';
 import { FaTimes } from 'react-icons/fa';
 
@@ -9,7 +9,7 @@ const LoginPopup = () => {
 	const dispatch = useDispatch();
 
 	const closePopup = () => {
-		dispatch(loginSlice.actions.displayFalse(false));
+		dispatch(utilitySlice.actions.displayPopup(false));
 	};
 
 	const signInAction = () => {
@@ -18,10 +18,10 @@ const LoginPopup = () => {
 				isLoggedIn: true,
 				userEmail: 'cptn3m0grv@gmail.com',
 				uuid: 'thisisauniqueuserID',
-				userName: 'gaurav Goyal',
+				userName: 'gaurav goyal',
 			})
 		);
-		dispatch(loginSlice.actions.displayFalse(false));
+		dispatch(utilitySlice.actions.displayPopup(false));
 	};
 
 	return (

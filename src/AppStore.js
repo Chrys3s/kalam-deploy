@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userSlice from './slices/userSlice';
-import loginSlice from './slices/loginScreenSlice';
+import utilitySlice from './slices/utilitySlice';
 
 const rootReducer = {
 	userInfo: userSlice.reducer,
-	loginScreen: loginSlice.reducer,
+	utilitySlice: utilitySlice.reducer,
 };
 
 export default configureStore({
