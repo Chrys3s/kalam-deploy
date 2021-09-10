@@ -5,6 +5,8 @@ export const utilitySlice = createSlice({
 	initialState: {
 		loginScreen: false,
 		darkMode: false,
+		showError: false,
+		errorMessage: null,
 	},
 	reducers: {
 		displayPopup: (state, action) => {
@@ -12,6 +14,12 @@ export const utilitySlice = createSlice({
 		},
 		setDarkMode: (state, action) => {
 			state.darkMode = action.payload;
+		},
+		showError: (state, action) => {
+			state.showError = action.payload;
+		},
+		setErrorDetails: (state, action) => {
+			state.errorMessage = action.payload;
 		},
 	},
 });

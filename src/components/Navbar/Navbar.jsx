@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import utilitySlice from '../../slices/utilitySlice';
 import userSlice from '../../slices/userSlice';
+import { auth } from '../../firebaseConfig/config';
 
 const Navbar = () => {
 	const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const Navbar = () => {
 	};
 
 	const logOutAction = () => {
+		auth.signOut();
 		dispatch(userSlice.actions.logout());
 	};
 

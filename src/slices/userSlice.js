@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const defaultState = {
 	userInfo: {
 		isLoggedIn: false,
+		isAdmin: false,
 		userEmail: null,
 		uuid: null,
 		userName: null,
@@ -14,9 +15,10 @@ export const userSlice = createSlice({
 	initialState: {
 		userInfo: {
 			isLoggedIn: false,
+			isAdmin: false,
 			userEmail: null,
 			uuid: null,
-			userName: 'gaurav Goyal',
+			userName: null,
 		},
 	},
 	reducers: {
