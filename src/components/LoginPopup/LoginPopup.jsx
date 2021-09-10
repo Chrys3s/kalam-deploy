@@ -85,6 +85,7 @@ const LoginPopup = () => {
 								dispatch(
 									utilitySlice.actions.displayPopup(false)
 								);
+								return;
 							}
 						});
 					});
