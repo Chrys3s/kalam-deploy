@@ -8,6 +8,7 @@ import Navbar from './Navbar/Navbar';
 import NoMatch from './404/NoMatch';
 import AboutPage from './About/AboutPage';
 import LoginPopup from './LoginPopup/LoginPopup';
+import Deletepopup from './DeletePopup/Deletepopup';
 
 const App = () => {
 	const utility = useSelector(state => state.utilitySlice);
@@ -21,6 +22,7 @@ const App = () => {
 			<main className={utility.darkMode ? 'dark' : ''}>
 				<Navbar />
 				{utility.loginScreen && <LoginPopup />}
+				{utility.deleteScreenPopup && <Deletepopup />}
 				<Switch>
 					<Route path="/" exact component={LandingPage} />
 					<Route path="/blogs" exact component={BlogPage} />

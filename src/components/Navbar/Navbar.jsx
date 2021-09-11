@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import utilitySlice from '../../slices/utilitySlice';
 import userSlice from '../../slices/userSlice';
 import { auth } from '../../firebaseConfig/config';
+import switchSound from '../../assets/audio/switch-8.mp3';
 
 const Navbar = () => {
 	const dispatch = useDispatch();
@@ -16,10 +17,12 @@ const Navbar = () => {
 
 	const logOutAction = () => {
 		auth.signOut();
+		dispatch(utilitySlice.actions.displayDeleteAccountButton(false));
 		dispatch(userSlice.actions.logout());
 	};
 
 	const switchMode = () => {
+		new Audio(switchSound).play();
 		dispatch(utilitySlice.actions.setDarkMode(!utility.darkMode));
 		localStorage.setItem('darkMode', !utility.darkMode);
 	};
