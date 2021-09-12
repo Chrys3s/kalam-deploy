@@ -9,7 +9,7 @@ import switchSound from '../../assets/audio/switch-8.mp3';
 const Navbar = () => {
 	const dispatch = useDispatch();
 	const { userInfo } = useSelector(state => state.userInfo);
-	const utility = useSelector(state => state.utilitySlice);
+	let utility = useSelector(state => state.utilitySlice);
 
 	const showPopup = () => {
 		dispatch(utilitySlice.actions.displayPopup(true));
@@ -24,25 +24,27 @@ const Navbar = () => {
 	const switchMode = () => {
 		new Audio(switchSound).play();
 		dispatch(utilitySlice.actions.setDarkMode(!utility.darkMode));
-		localStorage.setItem('darkMode', !utility.darkMode);
+		localStorage.setItem('kalam-darkMode', !utility.darkMode);
 	};
 
 	return (
-		<section className="flex justify-between bg-customN-light dark:bg-customN-dark dark:text-white h-14 shadow-xl dark:shadow-2xl">
+		<section className="sticky flex justify-between bg-customN-light dark:bg-customN-dark dark:text-white h-14 shadow-xl dark:shadow-2xl w-full">
 			<section className="flex justify-center items-center">
 				<span className="p-2 m-1 text-3xl font-semibold">
 					<Link to="/">क</Link>
 				</span>
 			</section>
 			<section className="flex justify-around items-center">
-				<button className="p-2 m-1">
-					<Link to="/blogs">Blogs</Link>
+				<button className="p-2 m-1 cursor-not-allowed" disabled>
+					{/* <Link to="/blogs">Blogs</Link> */}
+					Blogs
 				</button>
 				<button className="p-2 m-1">
 					<Link to="/practice">Practice</Link>
 				</button>
-				<button className="p-2 m-1">
-					<Link to="/about">About</Link>
+				<button className="p-2 m-1 cursor-not-allowed" disabled>
+					{/* <Link to="/about">About</Link> */}
+					About
 				</button>
 			</section>
 			<section className="flex justify-around h-14 w-60 items-center">

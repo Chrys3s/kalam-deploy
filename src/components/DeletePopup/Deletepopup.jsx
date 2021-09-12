@@ -100,7 +100,7 @@ const Deletepopup = () => {
 
 	return (
 		<>
-			<main className="popup">
+			<main className="popup z-10">
 				<main className="popup-inner">
 					{error ? <ErrorBar /> : <></>}
 					<button

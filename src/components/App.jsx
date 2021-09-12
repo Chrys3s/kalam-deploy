@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import LandingPage from './Landing/LandingPage';
 import BlogPage from './Blogs/BlogPage';
@@ -9,13 +9,22 @@ import NoMatch from './404/NoMatch';
 import AboutPage from './About/AboutPage';
 import LoginPopup from './LoginPopup/LoginPopup';
 import Deletepopup from './DeletePopup/Deletepopup';
+import utilitySlice from '../slices/utilitySlice';
 
 const App = () => {
-	const utility = useSelector(state => state.utilitySlice);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		document.title = 'कलम 🖋';
+		// const setDarkMode = async () => {
+		// 	const modePref = await localStorage.getItem('kalam-darkMode');
+		// 	console.log(modePref);
+		// 	dispatch(utilitySlice.actions.setDarkMode(modePref));
+		// };
+		// setDarkMode();
 	}, []);
+
+	const utility = useSelector(state => state.utilitySlice);
 
 	return (
 		<Router>
