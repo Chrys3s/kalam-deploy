@@ -9,7 +9,7 @@ import switchSound from '../../assets/audio/switch-8.mp3';
 const Navbar = () => {
 	const dispatch = useDispatch();
 	const { userInfo } = useSelector(state => state.userInfo);
-	let utility = useSelector(state => state.utilitySlice);
+	const utility = useSelector(state => state.utilitySlice);
 
 	const showPopup = () => {
 		dispatch(utilitySlice.actions.displayPopup(true));
