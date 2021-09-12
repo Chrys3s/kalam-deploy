@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './LoginPopup.css';
 import { useDispatch, useSelector } from 'react-redux';
 import utilitySlice from '../../slices/utilitySlice';
@@ -11,17 +11,87 @@ import ErrorBar from '../Errorbar/ErrorBar';
 const LoginPopup = () => {
 	const dispatch = useDispatch();
 
+	useEffect(() => {
+		dispatch(utilitySlice.actions.showError(false));
+		dispatch(utilitySlice.actions.setErrorDetails(null));
+	}, []);
+
 	const [flag, setFlag] = useState(false);
 	const [email, setEmail] = useState('');
 	const [pwd, setPwd] = useState('');
 	const [name, setName] = useState('');
 	const [cpwd, setCpwd] = useState('');
 
+	const validateEmail = () => {
+		setEmail(email.toLowerCase());
+
+		if (
+			!/^[a-z0-9_-]*\.*[a-z0-9_-]*@[a-z]*\.[a-z]*\.*[a-z]*$/gm.test(email)
+		) {
+			dispatch(utilitySlice.actions.setErrorDetails('Invalid Email'));
+			dispatch(utilitySlice.actions.showError(true));
+			return true;
+		}
+
+		const breakEmail = email.split('@');
+
+		if (breakEmail[1] === 'kalam.admin') {
+			dispatch(utilitySlice.actions.setErrorDetails('Invalid Email'));
+			dispatch(utilitySlice.actions.showError(true));
+			return true;
+		}
+
+		return false;
+	};
+
 	const closePopup = () => {
 		dispatch(utilitySlice.actions.displayPopup(false));
 	};
 
+	const dontHaveAnAccount = () => {
+		setFlag(true);
+		setEmail('');
+		setPwd('');
+		setCpwd('');
+		setName('');
+		dispatch(utilitySlice.actions.showError(false));
+		dispatch(utilitySlice.actions.setErrorDetails(null));
+	};
+
+	const alreadyHaveAnAccount = () => {
+		setFlag(false);
+		setEmail('');
+		setPwd('');
+		setCpwd('');
+		setName('');
+		dispatch(utilitySlice.actions.showError(false));
+		dispatch(utilitySlice.actions.setErrorDetails(null));
+	};
+
+	const forgetPassword = () => {
+		if (validateEmail()) {
+			return;
+		}
+
+		auth.sendPasswordResetEmail(email)
+			.then(() => {
+				dispatch(
+					utilitySlice.actions.setErrorDetails(
+						`An email has been sent to ${email}`
+					)
+				);
+				dispatch(utilitySlice.actions.showError(true));
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	};
+
 	const signUpAction = () => {
+		if (validateEmail()) {
+			return;
+		}
+
 		if (!(name && email && pwd && cpwd)) {
 			console.log('Required Fields Empty....');
 			return;
@@ -31,6 +101,8 @@ const LoginPopup = () => {
 			console.log("Passwords don't match....");
 			return;
 		}
+
+		setEmail(email.toLowerCase());
 
 		auth.createUserWithEmailAndPassword(email, cpwd)
 			.then(user => {
@@ -47,8 +119,17 @@ const LoginPopup = () => {
 					})
 				);
 				dispatch(utilitySlice.actions.displayPopup(false));
+				dispatch(utilitySlice.actions.displayDeleteAccountButton(true));
 			})
 			.catch(err => {
+				if (err.code === 'auth/invalid-email') {
+					dispatch(
+						utilitySlice.actions.setErrorDetails('Invalid Email')
+					);
+					dispatch(utilitySlice.actions.showError(true));
+					return;
+				}
+
 				if (err.code === 'auth/email-already-in-use') {
 					dispatch(
 						utilitySlice.actions.setErrorDetails(
@@ -56,39 +137,54 @@ const LoginPopup = () => {
 						)
 					);
 					dispatch(utilitySlice.actions.showError(true));
+					return;
 				}
 			});
 	};
 
 	const signInAction = () => {
+		setEmail(email.toLowerCase());
 		auth.signInWithEmailAndPassword(email, pwd)
-			.then(user => {
-				firebaseDB
-					.collection(process.env.REACT_APP_DB_DEV)
-					.get()
-					.then(query => {
-						query.forEach(ele => {
-							const userData = ele.data();
-							console.log(userData);
-							if (
-								userData.uid === user.user.uid &&
-								userData.email === user.user.email
-							) {
-								dispatch(
-									userSlice.actions.login({
-										isLoggedIn: true,
-										userEmail: user.user.email,
-										uuid: user.user.uid,
-										userName: userData.name,
-									})
-								);
-								dispatch(
-									utilitySlice.actions.displayPopup(false)
-								);
-								return;
-							}
-						});
-					});
+			.then(async user => {
+				const dbRef = firebaseDB.collection(
+					process.env.REACT_APP_DB_DEV
+				);
+
+				const snapshot = await dbRef
+					.where('uid', '==', user.user.uid)
+					.get();
+
+				if (snapshot.empty) {
+					console.log('No match found....');
+					return;
+				}
+
+				snapshot.forEach(doc => {
+					const userData = doc.data();
+					if (
+						userData.uid === user.user.uid &&
+						userData.email === user.user.email
+					) {
+						dispatch(
+							userSlice.actions.login({
+								isLoggedIn: true,
+								userEmail: user.user.email,
+								uuid: user.user.uid,
+								idAdmin: userData.isAdmin
+									? userData.isAdmin
+									: false,
+								userName: userData.name,
+							})
+						);
+						dispatch(utilitySlice.actions.displayPopup(false));
+						dispatch(
+							utilitySlice.actions.displayDeleteAccountButton(
+								true
+							)
+						);
+						return;
+					}
+				});
 			})
 			.catch(err => {
 				if (err.code === 'auth/wrong-password') {
@@ -96,6 +192,7 @@ const LoginPopup = () => {
 						utilitySlice.actions.setErrorDetails('Wrong Password')
 					);
 					dispatch(utilitySlice.actions.showError(true));
+					return;
 				}
 
 				if (err.code === 'auth/invalid-email') {
@@ -103,6 +200,7 @@ const LoginPopup = () => {
 						utilitySlice.actions.setErrorDetails('Invalid Email')
 					);
 					dispatch(utilitySlice.actions.showError(true));
+					return;
 				}
 
 				if (err.code === 'auth/user-not-found') {
@@ -112,6 +210,7 @@ const LoginPopup = () => {
 						)
 					);
 					dispatch(utilitySlice.actions.showError(true));
+					return;
 				}
 			});
 	};
@@ -194,13 +293,7 @@ const LoginPopup = () => {
 							<h4 className="flex justify-center items-center">
 								Already have an account?&nbsp;
 								<span
-									onClick={() => {
-										setFlag(false);
-										setEmail('');
-										setPwd('');
-										setCpwd('');
-										setName('');
-									}}
+									onClick={alreadyHaveAnAccount}
 									className="cursor-pointer text-blue-700 underline"
 								>
 									Sign In
@@ -219,16 +312,18 @@ const LoginPopup = () => {
 							</button>
 						</main>
 						<main className="m-2">
+							<h4
+								className="flex justify-center items-center cursor-pointer text-blue-700 underline"
+								onClick={forgetPassword}
+							>
+								Forgot Password?
+							</h4>
+						</main>
+						<main className="m-2">
 							<h4 className="flex justify-center items-center">
 								Don't have an account?&nbsp;
 								<span
-									onClick={() => {
-										setFlag(true);
-										setEmail('');
-										setPwd('');
-										setCpwd('');
-										setName('');
-									}}
+									onClick={dontHaveAnAccount}
 									className="cursor-pointer text-blue-700 underline"
 								>
 									Sign Up

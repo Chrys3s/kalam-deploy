@@ -4,8 +4,10 @@ export const utilitySlice = createSlice({
 	name: 'utilitySlice',
 	initialState: {
 		loginScreen: false,
+		deleteScreenPopup: false,
 		darkMode: false,
 		showError: false,
+		showDeleteOption: false,
 		errorMessage: null,
 	},
 	reducers: {
@@ -20,6 +22,12 @@ export const utilitySlice = createSlice({
 		},
 		setErrorDetails: (state, action) => {
 			state.errorMessage = action.payload;
+		},
+		displayDeleteScreenPopup: (state, action) => {
+			state.deleteScreenPopup = action.payload;
+		},
+		displayDeleteAccountButton: (state, action) => {
+			state.showDeleteOption = action.payload;
 		},
 	},
 });
