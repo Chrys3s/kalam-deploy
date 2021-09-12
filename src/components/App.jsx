@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import LandingPage from './Landing/LandingPage';
 import BlogPage from './Blogs/BlogPage';
@@ -9,27 +9,21 @@ import NoMatch from './404/NoMatch';
 import AboutPage from './About/AboutPage';
 import LoginPopup from './LoginPopup/LoginPopup';
 import Deletepopup from './DeletePopup/Deletepopup';
-import utilitySlice from '../slices/utilitySlice';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 const App = () => {
-	const dispatch = useDispatch();
+	const [darkMode, setDarkMode] = useLocalStorage('darkmode', false);
 
 	useEffect(() => {
 		document.title = 'कलम 🖋';
-		// const setDarkMode = async () => {
-		// 	const modePref = await localStorage.getItem('kalam-darkMode');
-		// 	console.log(modePref);
-		// 	dispatch(utilitySlice.actions.setDarkMode(modePref));
-		// };
-		// setDarkMode();
 	}, []);
 
 	const utility = useSelector(state => state.utilitySlice);
 
 	return (
 		<Router>
-			<main className={utility.darkMode ? 'dark' : ''}>
-				<Navbar />
+			<main className={darkMode ? 'dark' : ''}>
+				<Navbar onClick={setDarkMode} val={darkMode} />
 				{utility.loginScreen && <LoginPopup />}
 				{utility.deleteScreenPopup && <Deletepopup />}
 				<Switch>

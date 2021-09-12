@@ -6,10 +6,10 @@ import userSlice from '../../slices/userSlice';
 import { auth } from '../../firebaseConfig/config';
 import switchSound from '../../assets/audio/switch-8.mp3';
 
-const Navbar = () => {
+const Navbar = props => {
 	const dispatch = useDispatch();
 	const { userInfo } = useSelector(state => state.userInfo);
-	const utility = useSelector(state => state.utilitySlice);
+	const { onClick, val } = props;
 
 	const showPopup = () => {
 		dispatch(utilitySlice.actions.displayPopup(true));
@@ -23,8 +23,7 @@ const Navbar = () => {
 
 	const switchMode = () => {
 		new Audio(switchSound).play();
-		dispatch(utilitySlice.actions.setDarkMode(!utility.darkMode));
-		localStorage.setItem('kalam-darkMode', !utility.darkMode);
+		onClick(!val);
 	};
 
 	return (
