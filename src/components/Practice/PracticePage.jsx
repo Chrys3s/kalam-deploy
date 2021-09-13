@@ -4,9 +4,24 @@ import Editor from '../Editor/Editor';
 import useLocalStorage from '../../hooks/useLocalStorage';
 
 const PracticePage = () => {
-	const [html, setHtml] = useLocalStorage('html', '');
-	const [css, setCss] = useLocalStorage('css', '');
-	const [js, setJs] = useLocalStorage('js', '');
+	const loggedIn = useSelector(state => state.userInfo);
+
+	const htmlKeyName = loggedIn.userInfo.isLoggedIn
+		? `html-${loggedIn.userInfo.uuid}`
+		: 'html';
+
+	const cssKeyName = loggedIn.userInfo.isLoggedIn
+		? `css-${loggedIn.userInfo.uuid}`
+		: 'css';
+
+	const jsKeyName = loggedIn.userInfo.isLoggedIn
+		? `js-${loggedIn.userInfo.uuid}`
+		: 'js';
+
+	const [html, setHtml] = useLocalStorage(htmlKeyName, '');
+	const [css, setCss] = useLocalStorage(cssKeyName, '');
+	const [js, setJs] = useLocalStorage(jsKeyName, '');
+
 	const [srcDoc, setSrcDoc] = useState('');
 
 	useEffect(() => {
@@ -14,22 +29,25 @@ const PracticePage = () => {
 	}, []);
 
 	useEffect(() => {
+		let renderTime = 1000;
+		if (loggedIn.userInfo.isLoggedIn) {
+			renderTime = 300;
+		}
+
 		const timeout = setTimeout(() => {
 			setSrcDoc(
 				`<html><head><style>body{background: #fcfcfc;}</style></head><body>${html}</body><style>${css}</style><script>${js}</script></html>`
 			);
-		}, 500);
+		}, renderTime);
 
 		return () => clearTimeout(timeout);
-	}, [html, css, js]);
+	}, [html, css, js, loggedIn.userInfo.isLoggedIn]);
 
 	const onDemandRender = () => {
 		setSrcDoc(
 			`<html><head><style>body{background: #fcfcfc;}</style></head><body>${html}</body><style>${css}</style><script>${js}</script></html>`
 		);
 	};
-
-	const loggedIn = useSelector(state => state.userInfo);
 
 	return (
 		<main className="px-4 py-2 bg-practiceBg-light dark:bg-practiceBg-dark w-auto box-border">
