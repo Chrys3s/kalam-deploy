@@ -8,11 +8,63 @@
 	box-sizing: border-box;
 }
 
+.top-pane {
+	background-color: hsl(225, 6%, 25%);
+}
+
+.pane {
+	height: 50vh;
+	@apply flex;
+}
+
+.editor-container {
+	@apply flex-grow flex flex-col p-2;
+	/* flex-grow: 1; */
+	flex-basis: 0;
+	/* display: flex; */
+	/* flex-direction: column; */
+	/* padding: 0.5rem; */
+	background-color: hsl(225, 6%, 25%);
+}
+
+.editor-container.collapsed {
+	@apply flex-grow-0;
+	/* flex-grow: 0; */
+}
+
+.editor-container.collapsed .CodeMirror-scroll {
+	position: absolute;
+	overflow: hidden !important;
+}
+
+.expand-collapse-btn {
+	@apply ml-2 border-none text-white cursor-pointer;
+	/* margin-left: 0.5rem; */
+	background: none;
+	/* border: none;
+	color: white;
+	cursor: pointer; */
+}
+
+.editor-title {
+	@apply flex justify-between text-white pt-2 pr-2 pb-2 pl-4 rounded-t-lg;
+	/* display: flex;
+	justify-content: space-between; */
+	background-color: hsl(225, 6%, 13%);
+	/* color: white; */
+	/* padding: 0.5rem 0.5rem 0.5rem 1rem; */
+	/* border-top-right-radius: 0.5rem;
+	border-top-left-radius: 0.5rem; */
+}
+
 .CodeMirror {
 	height: 100% !important;
 }
 
-.CodeMirror-scroll {
-	position: absolute;
-	overflow: hidden !important;
+.code-mirror-wrapper {
+	@apply flex-grow rounded-t-lg overflow-hidden;
+	/* flex-grow: 1; */
+	/* border-bottom-right-radius: 0.5rem;
+	border-bottom-left-radius: 0.5rem; */
+	/* overflow: hidden; */
 }

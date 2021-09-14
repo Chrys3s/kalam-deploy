@@ -28,6 +28,12 @@ const PracticePage = () => {
 		document.title = 'कलम 🖋 - Practice';
 	}, []);
 
+	//We will be supporting jQuery for signed in users only
+	const jQuery = loggedIn.userInfo.isLoggedIn
+		? `<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>`
+		: '';
+	const headHTML = `<head><style>body{background: #fcfcfc;}</style>${jQuery}</head>`;
+
 	useEffect(() => {
 		let renderTime = 1000;
 		if (loggedIn.userInfo.isLoggedIn) {
@@ -36,21 +42,21 @@ const PracticePage = () => {
 
 		const timeout = setTimeout(() => {
 			setSrcDoc(
-				`<html><head><style>body{background: #fcfcfc;}</style></head><body>${html}</body><style>${css}</style><script>${js}</script></html>`
+				`<html>${headHTML}<body>${html}</body><style>${css}</style><script>${js}</script></html>`
 			);
 		}, renderTime);
 
 		return () => clearTimeout(timeout);
-	}, [html, css, js, loggedIn.userInfo.isLoggedIn]);
+	}, [html, css, js, loggedIn.userInfo.isLoggedIn, headHTML]);
 
 	const onDemandRender = () => {
 		setSrcDoc(
-			`<html><head><style>body{background: #fcfcfc;}</style></head><body>${html}</body><style>${css}</style><script>${js}</script></html>`
+			`<html>${headHTML}<body>${html}</body><style>${css}</style><script>${js}</script></html>`
 		);
 	};
 
 	return (
-		<main className="px-4 py-2 bg-practiceBg-light dark:bg-practiceBg-dark w-auto box-border">
+		<main className="px-4 py-2 bg-practiceBg-light dark:bg-practiceBg-dark w-auto box-border h-full">
 			<main className="flex justify-between">
 				<main className="dark:text-white">
 					<span className="text-2xl font-semibold">कलम</span>
@@ -80,7 +86,7 @@ const PracticePage = () => {
 					</button>
 				</main>
 			</main>
-			<main className="flex mt-4">
+			<main className="pane top-pane">
 				<Editor
 					language="xml"
 					displayName="HTML"
@@ -100,7 +106,7 @@ const PracticePage = () => {
 					onChange={setJs}
 				/>
 			</main>
-			<main>
+			<main className="flex">
 				<iframe
 					srcDoc={srcDoc}
 					title="Output"

@@ -27,7 +27,7 @@ const Navbar = props => {
 	};
 
 	return (
-		<section className="sticky flex justify-between bg-customN-light dark:bg-customN-dark dark:text-white h-14 shadow-xl dark:shadow-2xl w-full">
+		<main className="sticky top-0 z-10 flex justify-between bg-customN-light dark:bg-customN-dark dark:text-white h-14 shadow-xl dark:shadow-2xl w-full">
 			<section className="flex justify-center items-center">
 				<span className="p-2 m-1 text-3xl font-semibold">
 					<Link to="/">क</Link>
@@ -63,7 +63,7 @@ const Navbar = props => {
 					</button>
 				)}
 			</section>
-		</section>
+		</main>
 	);
 };
 

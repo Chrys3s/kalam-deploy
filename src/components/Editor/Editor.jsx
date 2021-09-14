@@ -16,17 +16,13 @@ const Editor = props => {
 	};
 
 	return (
-		<main
-			className={`flex-grow flex flex-col p-2 bg-practiceBg-dark ${
-				open ? '' : 'flex-grow-0 absolute'
-			}`}
-			style={{ 'flex-basis': '0', height: '50vh' }}
-		>
-			<main className="flex justify-between bg-practiceBg-dark text-white pt-2 pr-2 pb-2 pl-4 rounded-tl-lg rounded-tr-lg">
+		<main className={`editor-container ${open ? '' : 'collapsed'}`}>
+			<main className="editor-title">
 				{displayName}
 				<button
+					type="button"
 					onClick={() => setOpen(!open)}
-					className="ml-2 bg-none border-none text-white curson-pointer"
+					className="expand-collapse-btn"
 				>
 					O/C
 				</button>
@@ -34,10 +30,9 @@ const Editor = props => {
 			<ControlledEditor
 				onBeforeChange={handleChange}
 				value={value}
-				className="flex-grow rounded-br-lg rounded-bl-lg overflow-hidden"
+				className="code-mirror-wrapper"
 				options={{
 					lineWrapping: true,
-					lint: true,
 					mode: language,
 					theme: 'material',
 					lineNumbers: true,

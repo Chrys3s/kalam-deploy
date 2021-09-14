@@ -218,7 +218,7 @@ const LoginPopup = () => {
 	const error = useSelector(state => state.utilitySlice.showError);
 
 	return (
-		<main className="popup z-10">
+		<main className="popup z-20">
 			<main className="popup-inner">
 				{error ? <ErrorBar /> : <></>}
 				<button
