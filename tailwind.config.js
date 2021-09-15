@@ -8,6 +8,10 @@ module.exports = {
 					light: '#bcccdc',
 					dark: '#486581',
 				},
+				practiceBg: {
+					light: '#edf0f7',
+					dark: '#334a67b3',
+				},
 			},
 		},
 	},
