@@ -23,6 +23,9 @@ const PracticePage = () => {
 	const [js, setJs] = useLocalStorage(jsKeyName, '');
 
 	const [srcDoc, setSrcDoc] = useState('');
+	const [openHtml, setOpenHtml] = useState(true);
+	const [openCss, setOpenCss] = useState(true);
+	const [openJs, setOpenJs] = useState(true);
 
 	useEffect(() => {
 		document.title = 'कलम 🖋 - Practice';
@@ -58,7 +61,7 @@ const PracticePage = () => {
 	return (
 		<main className="px-4 py-2 bg-practiceBg-light dark:bg-practiceBg-dark w-auto box-border h-full">
 			<main className="flex justify-between">
-				<main className="dark:text-white">
+				<main className="dark:text-white cursor-pointer">
 					<span className="text-2xl font-semibold">कलम</span>
 					<span className="text-2xl font-medium">🖋 - Practice</span>
 				</main>
@@ -92,18 +95,24 @@ const PracticePage = () => {
 					displayName="HTML"
 					value={html}
 					onChange={setHtml}
+					isOpen={[openHtml, openCss, openJs]}
+					changeOpenState={setOpenHtml}
 				/>
 				<Editor
 					language="css"
 					displayName="CSS"
 					value={css}
 					onChange={setCss}
+					isOpen={[openCss, openHtml, openJs]}
+					changeOpenState={setOpenCss}
 				/>
 				<Editor
 					language="js"
 					displayName="JS"
 					value={js}
 					onChange={setJs}
+					isOpen={[openJs, openCss, openHtml]}
+					changeOpenState={setOpenJs}
 				/>
 			</main>
 			<main className="flex">

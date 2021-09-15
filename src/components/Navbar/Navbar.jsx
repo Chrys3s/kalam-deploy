@@ -5,6 +5,8 @@ import utilitySlice from '../../slices/utilitySlice';
 import userSlice from '../../slices/userSlice';
 import { auth } from '../../firebaseConfig/config';
 import switchSound from '../../assets/audio/switch-8.mp3';
+import { FaSun } from 'react-icons/fa';
+import { FaMoon } from 'react-icons/fa';
 
 const Navbar = props => {
 	const dispatch = useDispatch();
@@ -21,13 +23,13 @@ const Navbar = props => {
 		dispatch(userSlice.actions.logout());
 	};
 
-	const switchMode = () => {
-		new Audio(switchSound).play();
+	const switchMode = async () => {
+		await new Audio(switchSound).play();
 		onClick(!val);
 	};
 
 	return (
-		<main className="sticky top-0 z-10 flex justify-between bg-customN-light dark:bg-customN-dark dark:text-white h-14 shadow-xl dark:shadow-2xl w-full">
+		<main className="sticky top-0 z-10 flex justify-between bg-customN-light dark:bg-customN-dark dark:text-white h-14 shadow-xl dark:shadow-2xl w-full opacity-95">
 			<section className="flex justify-center items-center">
 				<span className="p-2 m-1 text-3xl font-semibold">
 					<Link to="/">क</Link>
@@ -47,12 +49,16 @@ const Navbar = props => {
 				</button>
 			</section>
 			<section className="flex justify-around h-14 w-60 items-center">
-				<span className="cursor-pointer p-2 m-1" onClick={switchMode}>
-					LAMP
+				<span
+					className="cursor-pointer p-2 m-1 text-2xl"
+					onClick={switchMode}
+				>
+					{val && <FaSun color="fff200" />}
+					{!val && <FaMoon />}
 				</span>
 				{!userInfo.isLoggedIn ? (
 					<button onClick={showPopup} className="p-2 m-1">
-						SignIn
+						Login
 					</button>
 				) : (
 					<button
