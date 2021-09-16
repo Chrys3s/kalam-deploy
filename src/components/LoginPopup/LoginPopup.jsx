@@ -228,11 +228,11 @@ const LoginPopup = () => {
 					<FaTimes />
 				</button>
 				{flag ? (
-					<main className="bg-yellow-200 m-2 p-2">
-						<main>Name</main>
+					<main className="rounded-lg m-2 p-2">
+						<main className='ml-2 ' style={{color:"#1C538F", width: "fit-content"}} >Name</main>
 						<input
 							type="text"
-							className="border py-2 px-3 text-grey-darkset"
+							className="border rounded-xl w-80 py-2 px-3 text-grey-darkset shadow-sm"
 							onChange={e => {
 								setName(e.target.value);
 							}}
@@ -243,11 +243,11 @@ const LoginPopup = () => {
 				) : (
 					<></>
 				)}
-				<main className="bg-yellow-200 m-2 p-2">
-					<main>Email</main>
+				<main className=" m-2 p-2">
+					<main className='ml-2' style={{color:"#1C538F", width: "fit-content"}}>Email</main>
 					<input
 						type="email"
-						className="border py-2 px-3 text-grey-darkset"
+						className="border rounded-xl w-80 py-2 px-3 text-grey-darkset shadow-sm"
 						onChange={e => {
 							setEmail(e.target.value);
 						}}
@@ -255,11 +255,11 @@ const LoginPopup = () => {
 						required
 					/>
 				</main>
-				<main className="bg-yellow-500 m-2 p-2">
-					<h2>Password</h2>
+				<main className=" m-2 p-2">
+					<main className='ml-2' style={{color:"#1C538F", width: "fit-content"}}>Password</main>
 					<input
 						type="password"
-						className="border py-2 px-3 text-grey-darkset"
+						className="border rounded-xl w-80 py-2 px-3 text-grey-darkset shadow-sm"
 						onChange={e => {
 							setPwd(e.target.value);
 						}}
@@ -269,11 +269,11 @@ const LoginPopup = () => {
 				</main>
 				{flag ? (
 					<>
-						<main className="bg-yellow-500 m-2 p-2">
-							<h2>Confirm Password</h2>
+						<main className="m-2 p-2">
+							<main className='ml-2' style={{color:"#1C538F", width: "fit-content"}}>Confirm Password</main>
 							<input
 								type="password"
-								className="border py-2 px-3 text-grey-darkset"
+								className="border rounded-xl w-80 py-2 px-3 text-grey-darkset shadow-sm"
 								onChange={e => {
 									setCpwd(e.target.value);
 								}}
@@ -281,9 +281,9 @@ const LoginPopup = () => {
 								required
 							/>
 						</main>
-						<main className="m-2 bg-yellow-700 p-2">
+						<main className="m-2 p-2">
 							<button
-								className="bg-white m-2"
+								className="bg-white p-2 rounded-lg pl-5 pr-5 m-2 shadow-lg" style={{backgroundColor:"#8FD2F4"}}
 								onClick={signUpAction}
 							>
 								Sign Up
@@ -303,9 +303,9 @@ const LoginPopup = () => {
 					</>
 				) : (
 					<>
-						<main className="m-2 bg-yellow-700 p-2">
+						<main className="m-2 p-2">
 							<button
-								className="bg-white m-2"
+								className="bg-white p-2 rounded-lg pl-5 pr-5 m-2 shadow-lg" style={{backgroundColor:"#8FD2F4"}}
 								onClick={signInAction}
 							>
 								Sign In

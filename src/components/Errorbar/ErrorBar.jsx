@@ -14,7 +14,7 @@ const ErrorBar = () => {
 	const errorMessage = useSelector(state => state.utilitySlice.errorMessage);
 
 	return (
-		<main className="bg-red-400 backdrop-opacity-0 flex justify-between">
+		<main className="bg-red-400 mt-6 pl-4 pr-4 backdrop-opacity-0 flex justify-between">
 			{errorMessage}
 			<span className="cursor-pointer" onClick={handleClose}>
 				&nbsp;Close
