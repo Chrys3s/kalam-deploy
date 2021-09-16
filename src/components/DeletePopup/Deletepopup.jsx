@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import utilitySlice from '../../slices/utilitySlice';
 import userSlice from '../../slices/userSlice';
 import { FaTimes } from 'react-icons/fa';
-import './Deletepopup.css';
 import firebaseDB, { auth } from '../../firebaseConfig/config';
 import ErrorBar from '../Errorbar/ErrorBar';
 
