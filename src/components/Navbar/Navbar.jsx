@@ -31,16 +31,16 @@ const Navbar = props => {
 	return (
 		<main className="sticky top-0 z-10 flex justify-between bg-customN-light dark:bg-customN-dark dark:text-white h-14 shadow-xl dark:shadow-2xl w-full opacity-95">
 			<section className="flex justify-center items-center">
-				<span className="p-2 m-1 text-3xl font-semibold">
+				<span className="p-2 m-1 mx-3 text-3xl font-semibold">
 					<Link to="/">क</Link>
 				</span>
 			</section>
-			<section className="flex justify-around items-center">
+			<section className="flex justify-around items-center ml-28">
 				<button className="p-2 m-1 cursor-not-allowed" disabled>
 					{/* <Link to="/blogs">Blogs</Link> */}
 					Blogs
 				</button>
-				<button className="p-2 m-1">
+				<button className="p-2 m-1 mx-12">
 					<Link to="/practice">Practice</Link>
 				</button>
 				<button className="p-2 m-1 cursor-not-allowed" disabled>
