@@ -219,17 +219,27 @@ const LoginPopup = () => {
 
 	return (
 		<main className="popup z-20">
-			<main className="popup-inner">
+			<form className="popup-inner">
 				{error ? <ErrorBar /> : <></>}
-				<button
-					className="flex items-end close-btn"
-					onClick={closePopup}
-				>
-					<FaTimes />
-				</button>
+				<main className="p-2">
+					<h1 className="text-2xl">
+						{flag ? 'Welcome' : 'Welcome Back'}
+					</h1>
+					<button
+						className="flex items-end close-btn"
+						onClick={closePopup}
+					>
+						<FaTimes />
+					</button>
+				</main>
 				{flag ? (
 					<main className="rounded-lg m-2 p-2">
-						<main className='ml-2 ' style={{color:"#1C538F", width: "fit-content"}} >Name</main>
+						<main
+							className="ml-2 "
+							style={{ color: '#1C538F', width: 'fit-content' }}
+						>
+							Name
+						</main>
 						<input
 							type="text"
 							className="border rounded-xl w-80 py-2 px-3 text-grey-darkset shadow-sm"
@@ -244,7 +254,12 @@ const LoginPopup = () => {
 					<></>
 				)}
 				<main className=" m-2 p-2">
-					<main className='ml-2' style={{color:"#1C538F", width: "fit-content"}}>Email</main>
+					<main
+						className="ml-2"
+						style={{ color: '#1C538F', width: 'fit-content' }}
+					>
+						Email
+					</main>
 					<input
 						type="email"
 						className="border rounded-xl w-80 py-2 px-3 text-grey-darkset shadow-sm"
@@ -256,7 +271,12 @@ const LoginPopup = () => {
 					/>
 				</main>
 				<main className=" m-2 p-2">
-					<main className='ml-2' style={{color:"#1C538F", width: "fit-content"}}>Password</main>
+					<main
+						className="ml-2"
+						style={{ color: '#1C538F', width: 'fit-content' }}
+					>
+						Password
+					</main>
 					<input
 						type="password"
 						className="border rounded-xl w-80 py-2 px-3 text-grey-darkset shadow-sm"
@@ -270,7 +290,15 @@ const LoginPopup = () => {
 				{flag ? (
 					<>
 						<main className="m-2 p-2">
-							<main className='ml-2' style={{color:"#1C538F", width: "fit-content"}}>Confirm Password</main>
+							<main
+								className="ml-2"
+								style={{
+									color: '#1C538F',
+									width: 'fit-content',
+								}}
+							>
+								Confirm Password
+							</main>
 							<input
 								type="password"
 								className="border rounded-xl w-80 py-2 px-3 text-grey-darkset shadow-sm"
@@ -283,12 +311,17 @@ const LoginPopup = () => {
 						</main>
 						<main className="m-2 p-2">
 							<button
-								className="bg-white p-2 rounded-lg pl-5 pr-5 m-2 shadow-lg" style={{backgroundColor:"#8FD2F4"}}
+								className="bg-white p-2 rounded-lg pl-5 pr-5 m-2 w-80 shadow-lg"
+								style={{ backgroundColor: '#8FD2F4' }}
 								onClick={signUpAction}
 							>
 								Sign Up
 							</button>
 						</main>
+						<span className="flex justify-center">
+							- - - - - - - - - - - - - - - - OR - - - - - - - - -
+							- - - - - - -
+						</span>
 						<main className="m-2">
 							<h4 className="flex justify-center items-center">
 								Already have an account?&nbsp;
@@ -305,12 +338,17 @@ const LoginPopup = () => {
 					<>
 						<main className="m-2 p-2">
 							<button
-								className="bg-white p-2 rounded-lg pl-5 pr-5 m-2 shadow-lg" style={{backgroundColor:"#8FD2F4"}}
+								className="bg-white p-2 rounded-lg pl-5 pr-5 m-2 w-80 shadow-lg"
+								style={{ backgroundColor: '#8FD2F4' }}
 								onClick={signInAction}
 							>
 								Sign In
 							</button>
 						</main>
+						<span className="flex justify-center">
+							- - - - - - - - - - - - - - - - OR - - - - - - - - -
+							- - - - - - -
+						</span>
 						<main className="m-2">
 							<h4
 								className="flex justify-center items-center cursor-pointer text-blue-700 underline"
@@ -332,7 +370,7 @@ const LoginPopup = () => {
 						</main>
 					</>
 				)}
-			</main>
+			</form>
 		</main>
 	);
 };

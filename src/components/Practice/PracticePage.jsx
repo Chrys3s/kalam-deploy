@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Editor from '../Editor/Editor';
 import useLocalStorage from '../../hooks/useLocalStorage';
+import { FaUndo } from 'react-icons/fa';
+import { FaPlay } from 'react-icons/fa';
 
 const PracticePage = () => {
 	const loggedIn = useSelector(state => state.userInfo);
@@ -58,34 +60,26 @@ const PracticePage = () => {
 		);
 	};
 
+	const resetEditors = () => {
+		setHtml('');
+		setCss('');
+		setJs('');
+		onDemandRender();
+	};
+
 	return (
 		<main className="px-4 py-2 bg-practiceBg-light dark:bg-practiceBg-dark w-auto box-border h-full">
-			<main className="flex justify-between">
+			<main className="flex justify-between mb-2">
 				<main className="dark:text-white cursor-pointer">
 					<span className="text-2xl font-semibold">कलम</span>
 					<span className="text-2xl font-medium">🖋 - Practice</span>
 				</main>
-				<main className="flex justify-around pr-6">
-					<button
-						className={`m-2 mr-6 p-3 bg-yellow-200 w-20 ${
-							loggedIn.userInfo.isLoggedIn
-								? ''
-								: 'cursor-not-allowed'
-						}`}
-						disabled={!loggedIn.userInfo.isLoggedIn}
-						title={
-							loggedIn.userInfo.isLoggedIn
-								? ''
-								: 'You need to sign in to save the work'
-						}
-					>
-						Save
+				<main className="flex justify-between text-lg">
+					<button className="m-2 w-full p-1" onClick={resetEditors}>
+						<FaUndo />
 					</button>
-					<button
-						className="m-2 p-3 bg-yellow-200 w-20"
-						onClick={onDemandRender}
-					>
-						Run
+					<button className="m-2 w-full p-1" onClick={onDemandRender}>
+						<FaPlay />
 					</button>
 				</main>
 			</main>
