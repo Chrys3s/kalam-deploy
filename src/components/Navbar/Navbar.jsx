@@ -25,8 +25,8 @@ const Navbar = props => {
 	};
 
 	const switchMode = async () => {
-		await new Audio(switchSound).play();
 		onClick(!val);
+		await new Audio(switchSound).play();
 	};
 
 	return (
