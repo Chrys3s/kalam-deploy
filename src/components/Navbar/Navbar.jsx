@@ -38,7 +38,7 @@ const Navbar = props => {
 			</main>
 			<main className="flex">
 				<button
-					className="p-2 m-1 cursor-not-allowed underline"
+					className="p-2 m-1 underline cursor-not-allowed"
 					disabled
 				>
 					{/* <Link to="/blogs">Blogs</Link> */}
