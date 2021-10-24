@@ -1,0 +1,41 @@
+.home-bg {
+	background-image: url('../../assets/images/home-bg.jfif');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+.landing-2-img {
+	background-image: url('../../assets/images/home-bg-3.jfif');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	/* transform: scaleX(-1) */
+}
+
+.main-text {
+	text-shadow: 0 0 3px #cceefc;
+}
+
+.some-round-shape {
+	@apply w-36 h-36;
+	border-radius: 50%;
+}
+
+.det-1 {
+	background-image: url('../../assets/images/trewew.gif');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+}
+
+.det-3 {
+	background-image: url('../../assets/images/code.gif');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	height: 20rem;
+	width: 30rem;
+}

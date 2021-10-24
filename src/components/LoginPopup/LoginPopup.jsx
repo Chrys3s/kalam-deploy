@@ -170,7 +170,7 @@ const LoginPopup = () => {
 								isLoggedIn: true,
 								userEmail: user.user.email,
 								uuid: user.user.uid,
-								idAdmin: userData.isAdmin
+								isAdmin: userData.isAdmin
 									? userData.isAdmin
 									: false,
 								userName: userData.name,
@@ -362,7 +362,7 @@ const LoginPopup = () => {
 								Don't have an account?&nbsp;
 								<span
 									onClick={dontHaveAnAccount}
-									className="cursor-pointer text-blue-700 underline"
+									className="cursor-pointer text-blue-700"
 								>
 									Sign Up
 								</span>

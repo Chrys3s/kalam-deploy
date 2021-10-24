@@ -26,7 +26,8 @@
 		"web-vitals": "^1.1.2"
 	},
 	"scripts": {
-		"start": "npm install && craco start",
+		"fetch": "npm install",
+		"start:ui": "npm run fetch && craco start",
 		"build": "craco build",
 		"test": "craco test",
 		"eject": "react-scripts eject"

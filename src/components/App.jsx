@@ -9,6 +9,7 @@ import NoMatch from './404/NoMatch';
 import AboutPage from './About/AboutPage';
 import LoginPopup from './LoginPopup/LoginPopup';
 import Deletepopup from './DeletePopup/Deletepopup';
+import CurrBlog from './AllBlogs/CurrBlog';
 import useLocalStorage from '../hooks/useLocalStorage';
 
 const App = () => {
@@ -22,13 +23,14 @@ const App = () => {
 
 	return (
 		<Router>
-			<main className={darkMode ? 'dark' : ''}>
+			<main className={darkMode ? 'dark home' : 'home'}>
 				<Navbar onClick={setDarkMode} val={darkMode} />
 				{utility.loginScreen && <LoginPopup />}
 				{utility.deleteScreenPopup && <Deletepopup />}
 				<Switch>
 					<Route path="/" exact component={LandingPage} />
 					<Route path="/blogs" exact component={BlogPage} />
+					<Route path="/blogs/:id" exact component={CurrBlog} />
 					<Route path="/practice" exact component={PracticePage} />
 					<Route path="/about" exact component={AboutPage} />
 					<Route component={NoMatch} />

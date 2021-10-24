@@ -13,6 +13,9 @@ module.exports = {
 					dark: '#334a67b3',
 				},
 			},
+			spacing: {
+				hp: '100%',
+			},
 		},
 	},
 	variants: {
