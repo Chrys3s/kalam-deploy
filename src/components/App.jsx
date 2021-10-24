@@ -23,7 +23,7 @@ const App = () => {
 
 	return (
 		<Router>
-			<main className={darkMode ? 'dark' : ''}>
+			<main className={darkMode ? 'dark home' : 'home'}>
 				<Navbar onClick={setDarkMode} val={darkMode} />
 				{utility.loginScreen && <LoginPopup />}
 				{utility.deleteScreenPopup && <Deletepopup />}

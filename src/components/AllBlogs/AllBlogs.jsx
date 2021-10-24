@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { FaEye, FaComment, FaThumbsUp } from 'react-icons/fa';
 
 const AllBlogs = props => {
-	console.log(props.data);
 	const numberOfLikes = props.data.likes.length;
 	const authorDetails = props.data.author;
 	const blogTitle = props.data.blogTitle;
@@ -15,7 +14,6 @@ const AllBlogs = props => {
 	const tags = props.data.tags;
 	const views = props.data['views'];
 	const uniqueId = props.data['_id'];
-	console.log(dateCreated, imgUrl, lastModified);
 	return (
 		<main
 			className="m-4 bg-yellow-900 py-4 px-2"
@@ -44,7 +42,10 @@ const AllBlogs = props => {
 						<main>
 							{tags.map(tag => {
 								return (
-									<span className="bg-yellow-400 p-2">
+									<span
+										key={Date.now().toString() + tag}
+										className="bg-yellow-400 p-2"
+									>
 										{tag}
 									</span>
 								);

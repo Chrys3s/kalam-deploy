@@ -10,6 +10,7 @@ export const utilitySlice = createSlice({
 		showDeleteOption: false,
 		errorMessage: null,
 		displayBlogs: false,
+		displayThisBlog: false,
 	},
 	reducers: {
 		displayPopup: (state, action) => {
@@ -32,6 +33,9 @@ export const utilitySlice = createSlice({
 		},
 		setDisplayBlogs: (state, action) => {
 			state.displayBlogs = action.payload;
+		},
+		setDisplayThisBlog: (state, action) => {
+			state.displayThisBlog = action.payload;
 		},
 	},
 });
