@@ -1,7 +1,9 @@
-import React from 'react';
+import React from "react";
 
 function NoMatch() {
-	return <div>404</div>;
+  return (
+    <main className="text-6xl flex justify-center items-center">😎🥸🙅🏻‍♂️🤷‍♂️🕺</main>
+  );
 }
 
 export default NoMatch;
