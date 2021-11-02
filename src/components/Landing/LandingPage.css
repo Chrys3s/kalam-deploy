@@ -38,16 +38,30 @@
 
 .section-font-heading-p {
   font-family: "Lora", serif;
-  font-size: 200%;
+  font-size: 175%;
 }
 
 hr {
   border: 1px solid rgba(134, 130, 130, 0.377);
 }
 
-/* .about-us-bg{
-  background-image: url("../../assets/images/about-us-bg.jpeg");
+.about-us-bg {
+  background-image: url("../../assets/images/AboutUsBg.svg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-} */
+}
+
+.landing-2-img {
+  background-image: url("../../assets/images/common.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.practice-page-bg {
+  background-image: url("../../assets/images/common.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

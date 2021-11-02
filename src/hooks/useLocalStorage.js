@@ -1,26 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-const PREFIX = 'kalam-saved-data-';
+const PREFIX = "kalam-saved-data-";
 
 export default function useLocalStorage(key, initialValue) {
-	const prefixKey = PREFIX + key;
+  const prefixKey = PREFIX + key;
 
-	const [value, setValue] = useState(() => {
-		const jValue = localStorage.getItem(prefixKey);
-		if (jValue != null) {
-			return JSON.parse(jValue);
-		}
+  const [value, setValue] = useState(() => {
+    const jValue = localStorage.getItem(prefixKey);
+    if (jValue != null) {
+      return JSON.parse(jValue);
+    }
 
-		if (typeof initialValue === 'function') {
-			return initialValue();
-		} else {
-			return initialValue;
-		}
-	});
+    if (typeof initialValue === "function") {
+      return initialValue();
+    } else {
+      return initialValue;
+    }
+  });
 
-	useEffect(() => {
-		localStorage.setItem(prefixKey, JSON.stringify(value));
-	}, [prefixKey, value]);
+  useEffect(() => {
+    localStorage.setItem(prefixKey, JSON.stringify(value));
+  }, [prefixKey, value]);
 
-	return [value, setValue];
+  return [value, setValue];
 }
