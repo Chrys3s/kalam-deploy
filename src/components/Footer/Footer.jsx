@@ -58,8 +58,8 @@ const Footer = () => {
           <h1
             className={`text-2xl mb-2 cursor-pointer ${
               githubLink === "ashchaubey"
-                ? "text-black"
-                : "text-gray-600 dark:text-white"
+              ? `dark:text-white text-black`
+              : "text-gray-600 dark:text-black"
             }`}
             onClick={setAshishLink}
           >
@@ -68,8 +68,8 @@ const Footer = () => {
           <h1
             className={`text-2xl mb-2 cursor-pointer ${
               githubLink === "Dracula62"
-                ? `text-black`
-                : "text-gray-600 dark:text-white"
+              ? `dark:text-white text-black`
+              : "text-gray-600 dark:text-black"
             }`}
             onClick={setAsmitLink}
           >
@@ -78,8 +78,8 @@ const Footer = () => {
           <h1
             className={`text-2xl mb-2 cursor-pointer ${
               githubLink === "Stalwart-GS"
-                ? `text-black`
-                : "text-gray-600 dark:text-white"
+              ? `dark:text-white text-black`
+              : "text-gray-600 dark:text-black"
             }`}
             onClick={setGargeyaLink}
           >
@@ -88,8 +88,8 @@ const Footer = () => {
           <h1
             className={`text-2xl cursor-pointer ${
               githubLink === "cptn3m0grv"
-                ? `text-black`
-                : "text-gray-600 dark:text-white"
+                ? `dark:text-white text-black`
+                : "text-gray-600 dark:text-black"
             }`}
             onClick={setGauravLink}
           >

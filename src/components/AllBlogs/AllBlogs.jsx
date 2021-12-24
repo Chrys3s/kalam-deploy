@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaEye, FaComment, FaThumbsUp } from "react-icons/fa";
+import { FaEye, FaComment, FaThumbsUp, FaUserAlt } from "react-icons/fa";
+import tempImg from "../../assets/images/blog-bg.jpg";
+import "./blogStyle.css";
 
 const AllBlogs = (props) => {
   const numberOfLikes = props.data.likes.length;
@@ -14,57 +16,68 @@ const AllBlogs = (props) => {
   const tags = props.data.tags;
   const views = props.data["views"];
   const uniqueId = props.data["_id"];
+
   return (
-    <main
-      className="m-4 bg-yellow-900 py-4 px-2"
-      style={{ minWidth: "500px", width: "1000px", height: "200px" }}
-    >
-      <Link to={`/blogs/${uniqueId}`}>
-        <main className="flex flex-col place-content-between">
-          <main className="flex  justify-between bg-yellow-700">
-            <main className="bg-yellow-600 w-10 h-10 rounded-3xl flex justify-center items-center mx-2">
-              {/* <img src={imgUrl} /> */}
-              img
-            </main>
-            <h2 className="flex justify-center items-center mx-2">
-              {blogTitle}
-            </h2>
-          </main>
-          <main className="bg-yellow-500 my-2">
-            {content.length > 25 ? `${content.slice(0, 25)}...` : `${content}`}
-            <h2 className="flex justify-end">{authorDetails.authorName}</h2>
-          </main>
-          <main className="bg-yellow-200 flex justify-between">
-            <main>
-              {tags.map((tag) => {
-                return (
-                  <span
-                    key={Date.now().toString() + tag}
-                    className="bg-yellow-400 p-2"
-                  >
-                    {tag}
-                  </span>
-                );
-              })}
-            </main>
-            <main className="flex justify-between w-32">
-              <p className="flex justify-between w-14 mr-2">
-                <FaEye />
-                {views}
-              </p>
-              <p className="flex justify-between w-14 mr-2">
-                <FaThumbsUp />
-                {numberOfLikes}
-              </p>
-              <p className="flex justify-between w-14 mr-2">
-                <FaComment />
-                {comments.length}
-              </p>
-            </main>
-          </main>
-        </main>
-      </Link>
-    </main>
+    <div className="bg-yellow-300 mb-2 blog-box mt-5 rounded-lg">
+      <div className="flex justify-between mb-2">
+        <div className="bg-yellow-200 pl-10 p-4">
+          <div className="flex justify-center mb-2">{props.data.blogTitle}</div>
+          <div className="flex justify-between">
+            <div>{props.data.author.authorName}</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div>{props.data.dateCreated}</div>
+          </div>
+        </div>
+          <img src={tempImg} className="w-46 h-36"/>
+      </div>
+      <div>
+        <div className="bg-yellow-500 p-4">
+          {`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, impedit
+        quae? Voluptatibus soluta iste unde impedit esse! Minus, quis quam, vel
+        sed molestias expedita obcaecati ipsam soluta velit unde cum! ${props.data.content}`
+            .length > 250
+            ? `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, impedit
+        quae? Voluptatibus soluta iste unde impedit esse! Minus, quis quam, vel
+        sed molestias expedita obcaecati ipsam soluta velit unde cum! ${props.data.content}`.slice(
+                0,
+                251
+              ) + "..."
+            : `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, impedit
+        quae? Voluptatibus soluta iste unde impedit esse! Minus, quis quam, vel
+        sed molestias expedita obcaecati ipsam soluta velit unde cum! ${props.data.content}`}
+        </div>
+        <Link to={`/blogs/${uniqueId}`}>Read More</Link>
+        <div className="flex">
+          <div>
+            {props.data.tags.map((tag) => {
+              return (
+                <div className="inline">
+                  <div className="bg-red-100 inline">{tag}</div>
+                  <div className="inline mr-8 triangle"></div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+    // <div className="bg-yellow-100 mb-2 blog-box p-2">
+    //   <div className="flex justify-between">
+    //     <div>
+    //       <div>{props.data.blogTitle}</div>
+    //       <div className="flex justify-between">
+    //         <div>{props.data.author.authorName}</div>
+    //         <div>{props.data.dateCreated}</div>
+    //       </div>
+    //     </div>
+    //     <div className="bg-yellow-500">
+    //       <img src={tempImg} className="h-1/2"/>
+    //     </div>
+    //   </div>
+    //   <div>
+    //     Remaining
+    //   </div>
+    // </div>
   );
 };
 
