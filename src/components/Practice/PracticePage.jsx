@@ -76,10 +76,10 @@ const PracticePage = () => {
           <span className="text-2xl font-medium">🖋 - Practice</span>
         </main>
         <main className="flex justify-between text-lg">
-          <button className="m-2 w-full p-1" onClick={resetEditors}>
+          <button className="m-2 w-full p-1" title="Reset" onClick={resetEditors}>
             <FaUndo />
           </button>
-          <button className="m-2 w-full p-1" onClick={onDemandRender}>
+          <button className="m-2 w-full p-1" title="Run" onClick={onDemandRender}>
             <FaPlay />
           </button>
         </main>

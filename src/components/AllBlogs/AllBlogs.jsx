@@ -14,55 +14,51 @@ const AllBlogs = (props) => {
   const tags = props.data.tags;
   const views = props.data["views"];
   const uniqueId = props.data["_id"];
+  console.log(props.data)
   return (
     <main
       className="m-4 bg-yellow-900 py-4 px-2"
       style={{ minWidth: "500px", width: "1000px", height: "200px" }}
     >
       <Link to={`/blogs/${uniqueId}`}>
-        <main className="flex flex-col place-content-between">
-          <main className="flex  justify-between bg-yellow-700">
-            <main className="bg-yellow-600 w-10 h-10 rounded-3xl flex justify-center items-center mx-2">
-              {/* <img src={imgUrl} /> */}
-              img
+      <main class="flex flex-col justify-between bg-yellow-700">
+        <main class="flex flex-row m-2">
+          <main class="bg-blue-400 flex justify-center items-center mx-1">
+            <main class="flex flex-wrap m-2">
+              <main class="bg-red-500 justify-center items-center px-52">
+                <span>{props.data.blogTitle}</span>
+              </main>
+              <main class="bg-red-700 px-20">
+                {props.data.author.authorName}
+              </main>
+              <main class="bg-yellow-500 px-20">
+                {props.data.dateCreated.slice(0, 10)}
+              </main>
             </main>
-            <h2 className="flex justify-center items-center mx-2">
-              {blogTitle}
-            </h2>
           </main>
-          <main className="bg-yellow-500 my-2">
-            {content.length > 25 ? `${content.slice(0, 25)}...` : `${content}`}
-            <h2 className="flex justify-end">{authorDetails.authorName}</h2>
-          </main>
-          <main className="bg-yellow-200 flex justify-between">
-            <main>
-              {tags.map((tag) => {
-                return (
-                  <span
-                    key={Date.now().toString() + tag}
-                    className="bg-yellow-400 p-2"
-                  >
-                    {tag}
-                  </span>
-                );
-              })}
-            </main>
-            <main className="flex justify-between w-32">
-              <p className="flex justify-between w-14 mr-2">
-                <FaEye />
-                {views}
-              </p>
-              <p className="flex justify-between w-14 mr-2">
-                <FaThumbsUp />
-                {numberOfLikes}
-              </p>
-              <p className="flex justify-between w-14 mr-2">
-                <FaComment />
-                {comments.length}
-              </p>
-            </main>
+          <main class="bg-yellow-600 justify-center items-center px-52">
+            <img src={props.data.imgUrl}/>
           </main>
         </main>
+        <main class="bg-yellow-500 justify-center items-center m-1">
+          <h2 class="flex justify-center items-center">{props.data.content}</h2>
+        </main>
+        <main class="bg-red-700 flex flex-row justify-between items-center m-1">
+          <main class="flex flex-row">
+            {props.data.tags.map()}
+            <h2 class="px-2">tag1</h2>
+            <h2 class="px-2">tag2</h2>
+          </main>
+          <main class="flex flex-row justify-end m-2">
+            <main class="px-2">like</main>
+            <main class="px-2">comment</main>
+            <main class="px-2">views</main>
+          </main>
+        </main>
+        <main class="bg-blue-400 flex justify-end mx-1">
+          <button class="mx-4">read more</button>
+        </main>
+      </main>
       </Link>
     </main>
   );
