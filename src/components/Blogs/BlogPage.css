@@ -5,3 +5,16 @@
   background-position: center;
   background-attachment: fixed;
 }
+
+.circle{
+  border-radius: 50%;
+  font-size: 4.5rem;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
+  margin-right: 6rem;
+  color: rgba(17, 70, 246, 0.931);
+}

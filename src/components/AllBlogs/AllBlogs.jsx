@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaEye, FaComment, FaThumbsUp } from "react-icons/fa";
+import { FaEye, FaComment, FaThumbsUp, FaUserAlt } from "react-icons/fa";
+import tempImg from "../../assets/images/blog-bg.jpg";
+import "./blogStyle.css";
 
 const AllBlogs = (props) => {
   const numberOfLikes = props.data.likes.length;

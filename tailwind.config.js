@@ -16,10 +16,15 @@ module.exports = {
 			spacing: {
 				hp: '100%',
 			},
+			scale:{
+				'25': '.25'
+			}
 		},
 	},
 	variants: {
 		extend: {},
 	},
-	plugins: [],
+	plugins: [
+		require('@tailwindcss/aspect-ratio')
+	],
 };

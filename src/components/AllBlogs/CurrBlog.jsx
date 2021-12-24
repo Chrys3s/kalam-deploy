@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import currBlogSlice from "../../slices/currBlogSlice";
 import utilitySlice from "../../slices/utilitySlice";
 import { sleepInMilliseconds } from "../../helpers/sleepInMilliseconds";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const CurrBlog = ({ match, location }) => {
   const dispatch = useDispatch();
+  const [blog, setBlog] = useState();
   const { params } = match;
   const { id } = params;
 
@@ -26,11 +28,11 @@ const CurrBlog = ({ match, location }) => {
     };
     fetchData();
   }, []);
-
-  let isLoading = useSelector((state) => state.utilitySlice.displayThisBlog);
-  const thisBlog = useSelector((state) => state.currBlogSlice.blogInfo);
-  isLoading = false;
-  console.log(thisBlog.tags);
+  
+    let isLoading = useSelector((state) => state.utilitySlice.displayThisBlog);
+    const thisBlog = useSelector((state) => state.currBlogSlice.blogInfo);  
+    isLoading = false;
+    console.log(thisBlog.tags);
 
   return (
     <main className="flex justify-center items-center">
@@ -38,6 +40,8 @@ const CurrBlog = ({ match, location }) => {
         <h1 className="animate-bounce">Loading</h1>
       ) : (
         <main>
+          <Link to="/blogs">Back</Link>
+          <main>
           <h1>{thisBlog.blogTitle}</h1>
           <p>{thisBlog.content}</p>
           <h4>{thisBlog.imgUrl}</h4>
@@ -56,6 +60,7 @@ const CurrBlog = ({ match, location }) => {
           <h2>{thisBlog.dateCreated}</h2>
           <h2>{thisBlog.lastModified}</h2>
           <h2>{thisBlog.comments && thisBlog.comments.length}</h2>
+          </main>
         </main>
       )}
     </main>

@@ -9,6 +9,7 @@ import NoMatch from "./404/NoMatch";
 import LoginPopup from "./LoginPopup/LoginPopup";
 import Deletepopup from "./DeletePopup/Deletepopup";
 import CurrBlog from "./AllBlogs/CurrBlog";
+import CreateBlog from "./Blogs/CreateBlog";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 const App = () => {
@@ -31,6 +32,8 @@ const App = () => {
           <Route path="/blogs" exact component={BlogPage} />
           <Route path="/blogs/:id" exact component={CurrBlog} />
           <Route path="/practice" exact component={PracticePage} />
+          <Route path="/create/blog" exact component={CreateBlog}/>
+          {/* <Route path="/blogs/:tag" exact component={TagPage}/> */}
           <Route
             path="/githubAccount/:id"
             component={(id) => {
