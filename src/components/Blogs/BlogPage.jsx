@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import AllBlogs from "../AllBlogs/AllBlogs";
 import LoadingEffect from "../AllBlogs/LoadingEffect";
 import { sleepInMilliseconds } from "../../helpers/sleepInMilliseconds";
+import { Link } from "react-router-dom";
+import { FaPlusCircle } from "react-icons/fa";
 import "./BlogPage.css";
 
 const BlogPage = () => {
@@ -22,7 +24,7 @@ const BlogPage = () => {
         method: "get",
         url: `${process.env.REACT_APP_API_URL}/v1/blogs/`,
       });
-      dispatch(blogDataSlice.actions.storeAllBlogs(res.data.data));
+      dispatch(blogDataSlice.actions.storeAllBlogs(res.data.data.reverse()));
       await sleepInMilliseconds(1000);
       dispatch(utilitySlice.actions.setDisplayBlogs(true));
     };
@@ -37,29 +39,28 @@ const BlogPage = () => {
 
   return (
     <main>
-      <main className="blog-landing flex justify-center items-center h-80 w-screen">
-        <h1 className="dark:text-white">कलम 🖋 - Blogs</h1>
-      </main>
-      <main className="flex justify-end">
-        {userInfo.userInfo.isAdmin && <button className="mr-2 p-2">Add</button>}
-        <button
-          className="mr-2 p-2"
-          onClick={() => {
-            setFlag(!flag);
-          }}
-        >
-          Refresh
-        </button>
-      </main>
-      <main className="flex flex-col items-center p-6 -mt-24">
-        {isDisplayBlogs ? (
-          blogDataFetched.map((curr) => {
-            return <AllBlogs key={curr._id} data={curr} />;
-          })
-        ) : (
+      {isDisplayBlogs ? (
+        <main className="flex flex-col items-center">
+          {blogDataFetched.length === 0 ? (
+            <h1>No Blogs Found</h1>
+          ) : (
+            blogDataFetched.map((curr) => {
+              return <AllBlogs key={curr._id} data={curr} />;
+            })
+          )}
+          <div className="inline fixed bottom-0 right-0">
+            <div className="circle">
+              <Link to="/create/blog">
+                <FaPlusCircle />
+              </Link>
+            </div>
+          </div>
+        </main>
+      ) : (
+        <main className="flex justify-center items-center h-screen w-screen">
           <LoadingEffect />
-        )}
-      </main>
+        </main>
+      )}
     </main>
   );
 };
