@@ -14,6 +14,7 @@ import "./BlogPage.css";
 const BlogPage = () => {
   const [flag, setFlag] = useState(false);
   const dispatch = useDispatch();
+  console.log(process.env.REACT_APP_API_URL);
   useEffect(() => {
     dispatch(blogDataSlice.actions.resetAllBlogs());
     dispatch(utilitySlice.actions.setDisplayBlogs(false));
