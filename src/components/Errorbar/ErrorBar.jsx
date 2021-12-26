@@ -13,6 +13,7 @@ const ErrorBar = () => {
 
   const errorMessage = useSelector((state) => state.utilitySlice.errorMessage);
   const toDisplay = useSelector((state) => state.utilitySlice.showError);
+  const isNotError = useSelector((state)=>state.utilitySlice.isNotError)
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -25,7 +26,7 @@ const ErrorBar = () => {
   }, [errorMessage]);
 
   return (
-    <main className="bg-red-500 mt-6 p-2 backdrop-opacity-0 flex justify-center animate-pulse rounded-lg">
+    <main className={`${isNotError ? 'bg-green-500' : 'bg-red-500'} mt-6 p-2 backdrop-opacity-0 flex justify-center animate-pulse rounded-lg`}>
       {errorMessage}
     </main>
   );

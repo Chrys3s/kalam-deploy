@@ -12,6 +12,7 @@ export const utilitySlice = createSlice({
     displayBlogs: false,
     displayThisBlog: false,
     comingForAbout: false,
+    isNotError: false
   },
   reducers: {
     displayPopup: (state, action) => {
@@ -41,6 +42,9 @@ export const utilitySlice = createSlice({
     setComingForAbout: (state, action) => {
       state.comingForAbout = action.payload;
     },
+    setIsNotError: (state, action) => {
+      state.isNotError = action.payload;
+    }
   },
 });
 

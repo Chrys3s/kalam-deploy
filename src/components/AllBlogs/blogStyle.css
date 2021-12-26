@@ -10,3 +10,36 @@
     border-bottom: 10px solid transparent;
     border-left: 10px solid red;
 }
+
+.ll{
+ background-image:url('../../assets/images/code.gif');
+ background-repeat: no-repeat;
+}
+
+.myButton {
+	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #a3c9f0 100%);
+	background-color:#79bbff;
+	border-radius:6px;
+	border:1px solid #7bafe3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Trebuchet MS;
+	font-size:15px;
+	padding:6px 19px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #a3c9f0 5%, #79bbff 100%);
+	background-color:#a3c9f0;
+  text-decoration: none;
+  color: #124170;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}

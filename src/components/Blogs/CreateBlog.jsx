@@ -66,12 +66,14 @@ const CreateBlog = () => {
           )
         );
         dispatch(utilitySlice.actions.showError(true));
+        dispatch(utilitySlice.actions.setIsNotError(true));
         localStorage.removeItem("kalam-saved-data-title-uid");
         localStorage.removeItem("kalam-saved-data-tags-uid");
         localStorage.removeItem("kalam-saved-data-content-uid");
         setTags("");
         setTitle("");
         setContent("");
+        console.log("Reached here")
       } catch (e) {
         dispatch(utilitySlice.actions.setErrorDetails(e));
         dispatch(utilitySlice.actions.showError(true));
