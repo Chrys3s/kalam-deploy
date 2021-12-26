@@ -4,13 +4,7 @@
 	"private": true,
 	"dependencies": {
 		"@craco/craco": "6.2.0",
-		"@material-ui/core": "4.12.3",
-		"@material-ui/icons": "4.11.2",
 		"@reduxjs/toolkit": "1.6.1",
-		"@tailwindcss/aspect-ratio": "^0.3.0",
-		"@testing-library/jest-dom": "5.14.1",
-		"@testing-library/react": "11.2.7",
-		"@testing-library/user-event": "12.8.3",
 		"@types/react-redux": "7.1.18",
 		"axios": "0.21.1",
 		"codemirror": "5.62.3",
@@ -28,7 +22,7 @@
 	},
 	"scripts": {
 		"fetch": "npm install",
-		"start:ui": "npm run fetch && craco start",
+		"start:ui": "craco start",
 		"build": "craco build",
 		"test": "craco test",
 		"eject": "react-scripts eject"
