@@ -30,4 +30,4 @@ and
 * After cloning this repo with main branch
 * Create a new branch `git checkout -b <your_branch_name>`
 * `git add .` and `git commit -m "appropriate message`
-* `git push -u origin <your_new_branch_name>`
+* `git push -u origin <your_new_branch_name>`# kalam-deploy
